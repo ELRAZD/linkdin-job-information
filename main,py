@@ -9,3 +9,18 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
+class Data_Mining():
+    def __init__(self):
+        self.path = r"C:\Users\Elyar\Desktop\New folder"
+        driver_path = os.path.join(self.path, "chromedriver.exe")
+
+        if not os.path.exists(driver_path):
+            raise FileNotFoundError(f"chromedriver پیدا نشد در: {driver_path}")
+
+        chrome_options = Options()
+        chrome_options.add_argument("--start-maximized")
+        chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+        chrome_options.add_argument("--disable-infobars")
+        chrome_options.add_argument("--disable-extensions")
+
+        self.driver = webdriver.Chrome(service=Service(driver_path), options=chrome_options)
