@@ -108,7 +108,7 @@ class Data_Mining():
                     print(f"⚠️ خطا در استخراج اطلاعات شغل: {e}")
                     continue
 
-            # رفتن به صفحه بعد
+
             try:
                 next_button_element = self.driver.find_element(By.XPATH, "//button[@aria-label='View next page']")
                 if next_button_element.is_enabled():
@@ -120,7 +120,6 @@ class Data_Mining():
                 print(f"⛔ نتوانست دکمه بعدی را پیدا کند یا کلیک کند: {e}")
                 break
 
-        # ذخیره در CSV
         job_data_path = os.path.join(self.path, "job_data.csv")
         with open(job_data_path, "w", newline='', encoding='utf-8') as jobs_data:
             writer = csv.DictWriter(jobs_data, fieldnames=["ID", "Link", "Title", "Company", "Location", "Salary"])
@@ -130,10 +129,10 @@ class Data_Mining():
         print(f"✅ استخراج {len(job_data)} شغل کامل شد. فایل ذخیره شد در: {job_data_path}")
 
 
-# 🧪 اجرای برنامه
+
 if __name__ == "__main__":
     data = Data_Mining()
     data.setup_driver()
-    data.login()  # ورود دستی توسط کاربر
-    data.jobs('java', 'germany')  # 🔍 جستجوی شغل
+    data.login()  
+    data.jobs('java', 'germany')  
     data.job_scraper(50) 
